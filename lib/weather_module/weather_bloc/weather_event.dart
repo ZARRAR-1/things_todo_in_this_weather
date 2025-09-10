@@ -6,6 +6,7 @@ abstract class WeatherEvent {}
 ///Triggered inside initState when the weather page is first loaded:
 class WeatherInitialFetchEvent
     extends WeatherEvent {
+  
   final Position position;
 
   WeatherInitialFetchEvent({required this.position});
