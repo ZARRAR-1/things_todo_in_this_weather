@@ -22,3 +22,10 @@ class WeatherLoadedSuccessState extends WeatherState {
 
 class WeatherLoadedErrorState extends WeatherState {}
 
+
+///Action States:
+class WeatherRefreshedState extends WeatherActionState{}
+
+class WeatherRefreshErrorState extends WeatherActionState{}
+
+
