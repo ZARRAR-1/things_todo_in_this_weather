@@ -369,7 +369,7 @@ class _HomeScreenState extends State<HomeScreen> {
           // final errorState = state as WeatherLoadedErrorState ;
             return const Scaffold(
               body: Center(
-                child: Text('Error fetching location data. Please change your location.'),
+                child: Text('Error fetching location data. Please enable phone location.'),
               ),
             );
 
