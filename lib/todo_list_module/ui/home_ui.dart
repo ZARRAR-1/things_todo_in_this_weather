@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
-
-import '../models/task.dart';
+import '../custom_widgets/task_tile.dart';
+import '../model/task.dart';
 import '../services/task_storage.dart';
-import '../widgets/task_tile.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

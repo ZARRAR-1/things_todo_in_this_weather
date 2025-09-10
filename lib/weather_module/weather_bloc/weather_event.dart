@@ -5,12 +5,13 @@ abstract class WeatherEvent {}
 
 ///Triggered inside initState when the weather page is first loaded:
 class WeatherInitialFetchEvent
-    extends HomeEvent {
+    extends WeatherEvent {
   final Position position;
 
-  const FetchWeather(required this.position);
+  WeatherInitialFetchEvent({required this.position});
+
 }
 
 //ToDo: EVent For Pull to refresh:
 class WeatherReFetchEvent
-    extends HomeEvent {}
+    extends WeatherEvent {}

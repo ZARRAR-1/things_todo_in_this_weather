@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../models/task.dart';
+import '../model/task.dart';
+
 
 typedef OnToggle = void Function(Task task, bool newValue);
 typedef OnDelete = void Function(Task task);

@@ -17,8 +17,6 @@ class WeatherLoadedSuccessState extends WeatherState {
 
   final Weather weather;
 
-  const WeatherBlocSuccess(this.weather);
-
-  WeatherLoadedSuccessState({required this.products});
+  WeatherLoadedSuccessState({required this.weather});
 }
 
