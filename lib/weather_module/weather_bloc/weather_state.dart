@@ -1,6 +1,24 @@
 part of 'weather_bloc.dart';
 
 @immutable
-sealed class WeatherState {}
+abstract class WeatherState {}
 
-final class WeatherInitial extends WeatherState {}
+abstract class WeatherActionState extends WeatherState {}
+
+//Non-Action States:
+class WeatherInitialState
+    extends WeatherState {} //State emitted when the module starts
+
+class WeatherLoadingState
+    extends WeatherState {} //State emitted when the Weatherpage is being loaded
+
+class WeatherLoadedSuccessState extends WeatherState {
+  //State emitted when the Weatherpage is successfully loaded
+
+  final Weather weather;
+
+  const WeatherBlocSuccess(this.weather);
+
+  WeatherLoadedSuccessState({required this.products});
+}
+
