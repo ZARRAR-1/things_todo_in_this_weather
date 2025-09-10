@@ -6,10 +6,7 @@ abstract class WeatherState {}
 abstract class WeatherActionState extends WeatherState {}
 
 ///Non-Action States:
-class WeatherInitialState
-    extends WeatherState {} //State emitted when the module starts
-
-class WeatherLoadingState
+class WeatherInitialLoadingState
     extends WeatherState {} //State emitted when the Weatherpage is being loaded
 
 class WeatherLoadedSuccessState extends WeatherState {
@@ -22,6 +19,7 @@ class WeatherLoadedSuccessState extends WeatherState {
 
 class WeatherLoadedErrorState extends WeatherState {}
 
+class PositionFetchFailedState extends WeatherState{}
 
 ///Action States:
 class WeatherRefreshedState extends WeatherActionState{}
