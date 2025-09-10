@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "com.example.things_todo_in_this_weather"
-    compileSdk = 35
+    compileSdk = 36
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
