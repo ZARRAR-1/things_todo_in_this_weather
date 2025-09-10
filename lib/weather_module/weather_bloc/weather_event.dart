@@ -12,6 +12,12 @@ class WeatherInitialFetchEvent
 
 }
 
-//ToDo: EVent For Pull to refresh:
+/// EVent For Pull to refresh:
 class WeatherReFetchEvent
-    extends WeatherEvent {}
+    extends WeatherEvent {
+
+  final Position position;
+
+  WeatherReFetchEvent({required this.position});
+
+}
