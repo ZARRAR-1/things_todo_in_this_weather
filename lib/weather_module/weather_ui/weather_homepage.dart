@@ -17,11 +17,20 @@ class WeatherHomeScreen extends StatefulWidget {
 class _WeatherHomeScreenState extends State<WeatherHomeScreen> {
   final WeatherBloc weatherBloc = WeatherBloc();
 
+  late double deviceWidth;
+  late double deviceHeight;
+
   @override
   initState() {
     super.initState();
-
     _fetchInitialWeather();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    deviceWidth = MediaQuery.sizeOf(context).width;
+    deviceHeight = MediaQuery.sizeOf(context).height;
   }
 
   Future<void> _fetchInitialWeather() async {
@@ -115,7 +124,7 @@ class _WeatherHomeScreenState extends State<WeatherHomeScreen> {
                   20,
                 ),
                 child: SizedBox(
-                  height: MediaQuery.of(context).size.height,
+                  height: deviceHeight,
                   child: Stack(
                     children: [
                       Align(
@@ -159,13 +168,13 @@ class _WeatherHomeScreenState extends State<WeatherHomeScreen> {
                         ),
                       ),
                       SizedBox(
-                        width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).size.height,
+                        width: deviceWidth,
+                        height: deviceHeight,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              '📍 ${successState.weather.areaName}',
+                              '📍 ${successState.weather.areaName}, ${successState.weather.country}',
                               style: const TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w300,
@@ -173,16 +182,17 @@ class _WeatherHomeScreenState extends State<WeatherHomeScreen> {
                             ),
                             const SizedBox(height: 8),
                             const Text(
-                              'Good Morning',
-                              // This could also come from the state if dynamic
+                              'Howdy',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 25,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                            getWeatherIcon(
-                              successState.weather.weatherConditionCode!,
+                            Align(
+                              child: getWeatherIcon(
+                                successState.weather.weatherConditionCode!,
+                              ),
                             ),
                             Center(
                               child: Text(
@@ -217,7 +227,9 @@ class _WeatherHomeScreenState extends State<WeatherHomeScreen> {
                                 ),
                               ),
                             ),
-                            const SizedBox(height: 30),
+                            SizedBox(
+                              height: deviceHeight * 0.1,
+                            ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [

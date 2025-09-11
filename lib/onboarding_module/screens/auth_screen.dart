@@ -53,6 +53,7 @@ class _UserAuthPageState extends State<UserAuthPage> {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
               content: Text('Login successful!'),
+              duration: Duration(seconds: 2),
               backgroundColor: Colors.green,
               behavior: SnackBarBehavior.floating,
             ),
