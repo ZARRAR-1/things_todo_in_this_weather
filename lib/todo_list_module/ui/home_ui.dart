@@ -4,14 +4,14 @@ import '../custom_widgets/task_tile.dart';
 import '../model/task.dart';
 import '../services/task_storage.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class ToDoHomeScreen extends StatefulWidget {
+  const ToDoHomeScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<ToDoHomeScreen> createState() => _ToDoHomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _ToDoHomeScreenState extends State<ToDoHomeScreen> {
   final TaskStorage _storage = TaskStorage();
   final List<Task> _tasks = [];
   bool _isLoading = true;

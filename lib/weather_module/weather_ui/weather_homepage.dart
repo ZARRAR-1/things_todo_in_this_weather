@@ -8,14 +8,14 @@ import 'package:intl/intl.dart';
 import '../weather_bloc/weather_bloc.dart';
 import '../weather_repo/repo.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class WeatherHomeScreen extends StatefulWidget {
+  const WeatherHomeScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<WeatherHomeScreen> createState() => _WeatherHomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _WeatherHomeScreenState extends State<WeatherHomeScreen> {
   final WeatherBloc weatherBloc = WeatherBloc();
 
   @override

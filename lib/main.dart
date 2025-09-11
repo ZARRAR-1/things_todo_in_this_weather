@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:things_todo_in_this_weather/weather_module/weather_ui/weather_homepage.dart';
-//import 'package:things_todo_in_this_weather/todo_list_module/ui/home_ui.dart';
+import 'onboarding_module/screens/dashboard.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Lock orientation to portrait only
+  // Locked orientation to portrait only
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
@@ -26,7 +25,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: HomeScreen(),
+      home: const Dashboard(),
     );
   }
 }
