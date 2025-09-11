@@ -127,7 +127,7 @@ class _UserAuthPageState extends State<UserAuthPage> {
                 controller: passwordController,
               ),
 
-              SizedBox(width: deviceWidth * 0.84, height: deviceHeight * 0.1),
+              SizedBox(width: deviceWidth * 0.84, height: deviceHeight * 0.07),
               const Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
