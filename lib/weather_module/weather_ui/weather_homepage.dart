@@ -1,12 +1,11 @@
+import 'dart:developer';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-
-import '../weather_bloc/weather_bloc.dart';
-import '../weather_repo/repo.dart';
+import 'package:things_todo_in_this_weather/weather_module/weather_bloc/weather_bloc.dart';
+import 'package:things_todo_in_this_weather/weather_module/weather_repo/repo.dart';
 
 class WeatherHomeScreen extends StatefulWidget {
   const WeatherHomeScreen({super.key});
@@ -23,7 +22,6 @@ class _WeatherHomeScreenState extends State<WeatherHomeScreen> {
     super.initState();
 
     _fetchInitialWeather();
-    //weatherBloc.add(WeatherInitialFetchEvent(position: WeatherRepo.determinePosition()));
   }
 
   Future<void> _fetchInitialWeather() async {
@@ -33,16 +31,10 @@ class _WeatherHomeScreenState extends State<WeatherHomeScreen> {
         weatherBloc.add(WeatherInitialFetchEvent(position: position));
       }
     } catch (e) {
-      // Handle any errors during position determination
-      // You might want to add an error event to your BLoC here
       if (mounted) {
-        // Example: weatherBloc.add(WeatherFetchErrorEvent(error: e.toString()));
-        // For now, just printing, but ideally, inform the user via the BLoC
-        print("Error determining position: $e");
-        // You could also add an event to the BLoC that leads to an error state UI
-        weatherBloc.add(
-          WeatherPositionFetchFailedEvent(),
-        ); // Assuming you have such an event/state
+        log('Error determining position: ${e.toString()}');
+
+        weatherBloc.add(WeatherPositionFetchFailedEvent());
       }
     }
   }
@@ -74,12 +66,10 @@ class _WeatherHomeScreenState extends State<WeatherHomeScreen> {
   Widget build(BuildContext context) {
     return BlocConsumer<WeatherBloc, WeatherState>(
       bloc: weatherBloc,
-      // Replace with your WeatherBloc instance
+
       listenWhen: (previous, current) => current is WeatherActionState,
-      // Define WeatherActionState if needed for navigation/side-effects
+
       listener: (BuildContext context, WeatherState state) {
-        // Handle any side-effects or navigation based on WeatherActionState
-        // For example, if you had an action to show a specific message:
         if (state is WeatherRefreshedState) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(

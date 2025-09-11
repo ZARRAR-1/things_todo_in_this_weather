@@ -24,9 +24,6 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
       backgroundColor: Colors.transparent,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        elevation: 0,
-        scrolledUnderElevation: 0,
-        // leading: const Icon(Icons.search, color: Colors.white),
         title: const Text(
           'Things ToDo in this Weather',
           style: TextStyle(color: Colors.white),
