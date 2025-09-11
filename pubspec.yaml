@@ -39,6 +39,7 @@ dependencies:
   weather: ^3.2.1
   flutter_bloc: ^9.1.1
   shared_preferences: ^2.5.3
+  adaptive_theme: ^3.7.1+2
 
 dev_dependencies:
   flutter_test:
