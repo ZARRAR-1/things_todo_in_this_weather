@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         brightness: Brightness.dark,
         primarySwatch:
-            Colors.blue, // You might want a different primary for dark mode
+            Colors.blue, // We might want a different primary for dark mode
         // Or define specific dark theme colors:
         // scaffoldBackgroundColor: Colors.grey[850],
         // appBarTheme: AppBarTheme(backgroundColor: Colors.grey[900]),
@@ -63,6 +63,7 @@ class MyApp extends StatelessWidget {
       initial: AdaptiveThemeMode.system,
       builder: (ThemeData light, ThemeData dark) {
         return MaterialApp(
+          debugShowCheckedModeBanner: false,
           title: 'LogicEra',
           theme: light,
           darkTheme: dark,

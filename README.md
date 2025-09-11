@@ -8,8 +8,20 @@ A new Flutter project leveraging some Intermediate Concepts of geo location, eph
 
 ## Getting Started with the Project Overview
 
+There are three main modules of the project:
+1-> Onboarding module; having separate files for Auth screen and Dashboard
+2-> ToDo List Module; it is a classical OOP based module implementing SOC with its distinct directories:
+Custom_Widgets, Model, Services and UI with setstate() for the onpage ephemeral state mgmt.
+3-> Lastly; Weather Module implementing practices of clean architecture with BLOC as the state mgmt solution.
 
-This project is a starting point for a Flutter application.
+## How to test the App
+
+.apk (release) build file will be uploaded on drive with link mentioned here: 
+
+
+
+
+This project is a starting point for a Flutter application, you can use in this season :D
 
 A few resources to get you started if this is your first Flutter project:
 
