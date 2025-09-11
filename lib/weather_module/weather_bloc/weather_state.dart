@@ -7,10 +7,10 @@ abstract class WeatherActionState extends WeatherState {}
 
 ///Non-Action States:
 class WeatherInitialLoadingState
-    extends WeatherState {} //State emitted when the Weatherpage is being loaded
+    extends WeatherState {} ///State emitted when the Weatherpage is being loaded
 
 class WeatherLoadedSuccessState extends WeatherState {
-  //State emitted when the Weatherpage is successfully loaded
+  ///State emitted when the Weatherpage is successfully loaded
 
   final Weather weather;
 

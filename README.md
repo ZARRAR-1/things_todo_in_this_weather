@@ -1,8 +1,13 @@
 # things_todo_in_this_weather
 
-A new Flutter project.
+- Date Created: 11 September'25
+- By: Ma'arij Abdul Qadir (Initial Developer)
+- Maintained by: n/a
 
-## Getting Started
+A new Flutter project leveraging some Intermediate Concepts of geo location, ephemaral & App wide state Management and Authentication.
+
+## Getting Started with the Project Overview
+
 
 This project is a starting point for a Flutter application.
 

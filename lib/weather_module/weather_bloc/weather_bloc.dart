@@ -10,10 +10,14 @@ import 'package:weather/weather.dart';
 import '../weather_repo/repo.dart';
 
 part 'weather_event.dart';
+
 part 'weather_state.dart';
 
 class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
-  WeatherFactory wf = WeatherFactory(WeatherRepo.API_KEY, language: Language.ENGLISH);
+  WeatherFactory wf = WeatherFactory(
+    WeatherRepo.API_KEY,
+    language: Language.ENGLISH,
+  );
 
   WeatherBloc() : super(WeatherInitialLoadingState()) {
     on<WeatherInitialFetchEvent>(weatherInitialFetchEvent);
@@ -21,34 +25,45 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
     on<WeatherPositionFetchFailedEvent>(weatherPositionFetchFailedEvent);
   }
 
-  Future<void> weatherInitialFetchEvent(WeatherInitialFetchEvent event, Emitter<WeatherState> emit) async {
+  Future<void> weatherInitialFetchEvent(
+    WeatherInitialFetchEvent event,
+    Emitter<WeatherState> emit,
+  ) async {
     emit(WeatherInitialLoadingState());
     try {
-      // WeatherFactory wf = WeatherFactory(API_KEY, language: Language.ENGLISH);
-      Weather w = await wf.currentWeatherByLocation(event.position.latitude, event.position.longitude);
+      Weather w = await wf.currentWeatherByLocation(
+        event.position.latitude,
+        event.position.longitude,
+      );
       debugPrint(w.toString());
       emit(WeatherLoadedSuccessState(weather: w));
-
     } catch (e) {
       log(e.toString());
       emit(WeatherLoadedErrorState());
     }
   }
 
-  Future<void> weatherReFetchEvent(WeatherReFetchEvent event, Emitter<WeatherState> emit) async {
+  Future<void> weatherReFetchEvent(
+    WeatherReFetchEvent event,
+    Emitter<WeatherState> emit,
+  ) async {
     try {
-      // WeatherFactory wf = WeatherFactory(API_KEY, language: Language.ENGLISH);
-      Weather w = await wf.currentWeatherByLocation(event.position.latitude, event.position.longitude);
+      Weather w = await wf.currentWeatherByLocation(
+        event.position.latitude,
+        event.position.longitude,
+      );
       debugPrint(w.toString());
       emit(WeatherLoadedSuccessState(weather: w));
-
     } catch (e) {
       log(e.toString());
       emit(WeatherLoadedErrorState());
     }
   }
 
-  FutureOr<void> weatherPositionFetchFailedEvent(WeatherPositionFetchFailedEvent event, Emitter<WeatherState> emit) {
-  emit(PositionFetchFailedState());
+  FutureOr<void> weatherPositionFetchFailedEvent(
+    WeatherPositionFetchFailedEvent event,
+    Emitter<WeatherState> emit,
+  ) {
+    emit(PositionFetchFailedState());
   }
 }

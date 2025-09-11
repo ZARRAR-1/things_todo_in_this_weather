@@ -15,11 +15,12 @@ class _ToDoHomeScreenState extends State<ToDoHomeScreen> {
   final TaskStorage _storage = TaskStorage();
   final List<Task> _tasks = [];
   bool _isLoading = true;
-  final _uuid = const Uuid();
+  late final Uuid _uuid; /// a class to generate random number id's for each task
 
   @override
   void initState() {
     super.initState();
+    _uuid = Uuid();
     _loadTasks();
   }
 
@@ -39,9 +40,9 @@ class _ToDoHomeScreenState extends State<ToDoHomeScreen> {
   void _showSnack(String message) {
     if (!mounted) return;
     ScaffoldMessenger.of(context).removeCurrentSnackBar();
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(message)),
-    );
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text(message)));
   }
 
   Future<void> _addTaskDialog() async {
@@ -112,8 +113,14 @@ class _ToDoHomeScreenState extends State<ToDoHomeScreen> {
           title: const Text('Clear all tasks?'),
           content: const Text('This will remove all tasks permanently.'),
           actions: [
-            TextButton(onPressed: () => Navigator.of(context).pop(false), child: const Text('Cancel')),
-            ElevatedButton(onPressed: () => Navigator.of(context).pop(true), child: const Text('Clear')),
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(false),
+              child: const Text('Cancel'),
+            ),
+            ElevatedButton(
+              onPressed: () => Navigator.of(context).pop(true),
+              child: const Text('Clear'),
+            ),
           ],
         );
       },
@@ -144,20 +151,20 @@ class _ToDoHomeScreenState extends State<ToDoHomeScreen> {
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
           : _tasks.isEmpty
-              ? const Center(child: Text('No tasks yet — add one!'))
-              : ListView.builder(
-                  padding: const EdgeInsets.symmetric(vertical: 8),
-                  itemCount: _tasks.length,
-                  itemBuilder: (context, idx) {
-                    final task = _tasks[idx];
-                    return TaskTile(
-                      task: task,
-                      onToggle: (t, v) => _toggleTask(t, v),
-                      onDelete: (t) => _deleteTask(t),
-                      onEdit: (t) => _editTaskDialog(t),
-                    );
-                  },
-                ),
+          ? const Center(child: Text('No tasks yet — add one!'))
+          : ListView.builder(
+              padding: const EdgeInsets.symmetric(vertical: 8),
+              itemCount: _tasks.length,
+              itemBuilder: (context, idx) {
+                final task = _tasks[idx];
+                return TaskTile(
+                  task: task,
+                  onToggle: (t, v) => _toggleTask(t, v),
+                  onDelete: (t) => _deleteTask(t),
+                  onEdit: (t) => _editTaskDialog(t),
+                );
+              },
+            ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: _addTaskDialog,
         label: const Text('Add Task'),
@@ -167,6 +174,7 @@ class _ToDoHomeScreenState extends State<ToDoHomeScreen> {
   }
 }
 
+///Helper Classes:
 class _TaskInputResult {
   final String title;
   final String description;
@@ -205,13 +213,17 @@ class _TaskDialogState extends State<_TaskDialog> {
 
   void _submit() {
     if (!_formKey.currentState!.validate()) return;
-    final result = _TaskInputResult(_titleCtrl.text.trim(), _descCtrl.text.trim());
+    final result = _TaskInputResult(
+      _titleCtrl.text.trim(),
+      _descCtrl.text.trim(),
+    );
     Navigator.of(context).pop(result);
   }
 
   @override
   Widget build(BuildContext context) {
-    final isEditing = widget.initialTitle != null || widget.initialDescription != null;
+    final isEditing =
+        widget.initialTitle != null || widget.initialDescription != null;
     return AlertDialog(
       title: Text(isEditing ? 'Edit Task' : 'New Task'),
       content: Form(
@@ -222,13 +234,16 @@ class _TaskDialogState extends State<_TaskDialog> {
             TextFormField(
               controller: _titleCtrl,
               decoration: const InputDecoration(labelText: 'Title'),
-              validator: (v) => (v == null || v.trim().isEmpty) ? 'Title required' : null,
+              validator: (v) =>
+                  (v == null || v.trim().isEmpty) ? 'Title required' : null,
               autofocus: true,
             ),
             const SizedBox(height: 8),
             TextFormField(
               controller: _descCtrl,
-              decoration: const InputDecoration(labelText: 'Description (optional)'),
+              decoration: const InputDecoration(
+                labelText: 'Description (optional)',
+              ),
               minLines: 1,
               maxLines: 3,
             ),
@@ -236,7 +251,10 @@ class _TaskDialogState extends State<_TaskDialog> {
         ),
       ),
       actions: [
-        TextButton(onPressed: () => Navigator.of(context).pop(), child: const Text('Cancel')),
+        TextButton(
+          onPressed: () => Navigator.of(context).pop(),
+          child: const Text('Cancel'),
+        ),
         ElevatedButton(onPressed: _submit, child: const Text('Save')),
       ],
     );

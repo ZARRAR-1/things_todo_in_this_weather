@@ -107,11 +107,8 @@ class _UserAuthPageState extends State<UserAuthPage> {
                 padding: const EdgeInsets.only(top: 32, bottom: 16),
                 child: Text(
                   'Log in to your account',
-                  style: TextStyle(
-                    color: primaryTextColor,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                  ),
+                  style: Theme.of(context).textTheme.titleLarge,
+
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -166,13 +163,6 @@ class _UserAuthPageState extends State<UserAuthPage> {
                 padding: EdgeInsets.all(16.0),
                 child: Divider(color: Colors.grey, height: 0),
               ),
-              // SizedBox(
-              //   width: deviceWidth * 0.84,
-              //   child: Column(
-              //     mainAxisAlignment: MainAxisAlignment.center,
-              //     children: <Widget>[Image.asset('assets/Logo.png')],
-              //   ),
-              // ),
             ],
           ),
           if (isLoading)

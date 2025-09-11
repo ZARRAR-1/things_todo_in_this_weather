@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../model/task.dart';
+import 'package:things_todo_in_this_weather/todo_list_module/model/task.dart';
 
-
+///Function types as aliasis: 
 typedef OnToggle = void Function(Task task, bool newValue);
 typedef OnDelete = void Function(Task task);
 typedef OnEdit = void Function(Task task);

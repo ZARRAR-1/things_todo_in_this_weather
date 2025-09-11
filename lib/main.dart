@@ -17,39 +17,49 @@ void main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
+  /// This widget is the root of your application:
   @override
   Widget build(BuildContext context) {
     return AdaptiveTheme(
-      // light: ThemeData.light(useMaterial3: true),
+      debugShowFloatingThemeButton: true,
       light: ThemeData(
-        useMaterial3: true, // Recommended for modern Flutter apps
+        useMaterial3: true,
         brightness: Brightness.light,
         primarySwatch: Colors.blue, // Example primary color
         // You can customize many other properties:
         // scaffoldBackgroundColor: Colors.white,
         // appBarTheme: AppBarTheme(backgroundColor: Colors.blue),
-        // textTheme: TextTheme(...),
+        textTheme: const TextTheme(
+          bodyLarge: TextStyle(color: Colors.black87),
+          bodyMedium: TextStyle(color: Colors.black54),
+          titleLarge: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         // buttonTheme: ButtonThemeData(...),
         // inputDecorationTheme: InputDecorationTheme(...),
         // cardTheme: CardTheme(...),
         // colorScheme: ColorScheme.light(primary: Colors.blue, secondary: Colors.amber),
       ),
-      // dark: ThemeData.dark(useMaterial3: true),
       dark: ThemeData(
         useMaterial3: true,
         brightness: Brightness.dark,
-        primarySwatch: Colors.blue, // You might want a different primary for dark mode
+        primarySwatch:
+            Colors.blue, // You might want a different primary for dark mode
         // Or define specific dark theme colors:
         // scaffoldBackgroundColor: Colors.grey[850],
         // appBarTheme: AppBarTheme(backgroundColor: Colors.grey[900]),
-        // textTheme: TextTheme(... with dark-appropriate colors ...),
+        textTheme: const TextTheme(
+            bodyLarge: TextStyle(color: Colors.white70),
+            bodyMedium: TextStyle(color: Colors.white54),
+            titleLarge: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          ),
         // buttonTheme: ButtonThemeData(...),
         // inputDecorationTheme: InputDecorationTheme(...),
         // cardTheme: CardTheme(color: Colors.grey[800]),
         // colorScheme: ColorScheme.dark(primary: Colors.lightBlue, secondary: Colors.orangeAccent),
       ),
-      // initial: AdaptiveThemeMode.system,
       initial: AdaptiveThemeMode.system,
       builder: (ThemeData light, ThemeData dark) {
         return MaterialApp(

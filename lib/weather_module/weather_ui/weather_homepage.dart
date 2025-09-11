@@ -227,9 +227,7 @@ class _WeatherHomeScreenState extends State<WeatherHomeScreen> {
                                 ),
                               ),
                             ),
-                            SizedBox(
-                              height: deviceHeight * 0.1,
-                            ),
+                            SizedBox(height: deviceHeight * 0.1),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -370,7 +368,6 @@ class _WeatherHomeScreenState extends State<WeatherHomeScreen> {
             );
 
           case const (WeatherLoadedErrorState):
-            // final errorState = state as WeatherLoadedErrorState ;
             return const Scaffold(
               body: Center(
                 child: Text(
@@ -380,7 +377,6 @@ class _WeatherHomeScreenState extends State<WeatherHomeScreen> {
             );
 
           case const (PositionFetchFailedState):
-            // final errorState = state as WeatherLoadedErrorState ;
             return const Scaffold(
               body: Center(
                 child: Text(
