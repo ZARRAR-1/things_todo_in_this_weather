@@ -1,4 +1,6 @@
-# Things ToDo in This Weather - App 
+# Things ToDo in This Weather - App <img width="100" height="100" alt="2" src="https://github.com/user-attachments/assets/3f81e6f0-64b9-4d8f-a91d-6a182495c092" /> <img width="100" height="100" alt="1" src="https://github.com/user-attachments/assets/92e9bb99-f811-4fc5-8084-d831e30ab295" />
+
+
 
 - Date Created: 11 September'25
 - By: Ma'arij Abdul Qadir (Initial Developer)
