@@ -16,8 +16,11 @@ Custom_Widgets, Model, Services and UI with setstate() for the onpage ephemeral 
 
 ## How to test the App
 
-.apk (release) build file will be uploaded on drive with link mentioned here: 
+.apk (release) build file will be uploaded on drive with link mentioned here:
 
+
+### Video Recording:
+https://drive.google.com/file/d/1GUdj_FiTni5IzmFg0G179YPoXYQW-XZj/view?usp=drivesdk
 
 
 
