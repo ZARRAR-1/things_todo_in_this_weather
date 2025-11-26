@@ -19,7 +19,7 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
     language: Language.ENGLISH,
   );
 
-  WeatherBloc() : super(WeatherInitialLoadingState()) {
+  WeatherBloc() : super(WeatherInitialLoadingState()) {                                    
     on<WeatherInitialFetchEvent>(weatherInitialFetchEvent);
     on<WeatherReFetchEvent>(weatherReFetchEvent);
     on<WeatherPositionFetchFailedEvent>(weatherPositionFetchFailedEvent);

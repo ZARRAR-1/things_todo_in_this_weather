@@ -46,6 +46,11 @@ class _UserAuthPageState extends State<UserAuthPage> {
               content: Text('Please fill in both username and password.'),
               backgroundColor: Colors.orangeAccent,
               behavior: SnackBarBehavior.floating,
+              margin: const EdgeInsets.only(
+                bottom: 300, // push it upward
+                left: 50,
+                right: 50,
+              ),
             ),
           );
         } else if (usernameController.text == 'test' &&

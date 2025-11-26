@@ -15,7 +15,8 @@ class WeatherHomeScreen extends StatefulWidget {
 }
 
 class _WeatherHomeScreenState extends State<WeatherHomeScreen> {
-  final WeatherBloc weatherBloc = WeatherBloc();
+  late final WeatherBloc _weatherBloc;
+  // final WeatherBloc weatherBloc = WeatherBloc();
 
   late double deviceWidth;
   late double deviceHeight;
@@ -23,6 +24,7 @@ class _WeatherHomeScreenState extends State<WeatherHomeScreen> {
   @override
   initState() {
     super.initState();
+    _weatherBloc = context.read<WeatherBloc>();
     _fetchInitialWeather();
   }
 
@@ -37,13 +39,13 @@ class _WeatherHomeScreenState extends State<WeatherHomeScreen> {
     try {
       final position = await WeatherRepo.determinePosition();
       if (mounted) {
-        weatherBloc.add(WeatherInitialFetchEvent(position: position));
+        _weatherBloc.add(WeatherInitialFetchEvent(position: position));
       }
     } catch (e) {
       if (mounted) {
         log('Error determining position: ${e.toString()}');
 
-        weatherBloc.add(WeatherPositionFetchFailedEvent());
+        _weatherBloc.add(WeatherPositionFetchFailedEvent());
       }
     }
   }
@@ -74,7 +76,7 @@ class _WeatherHomeScreenState extends State<WeatherHomeScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<WeatherBloc, WeatherState>(
-      bloc: weatherBloc,
+      bloc: _weatherBloc,
 
       listenWhen: (previous, current) => current is WeatherActionState,
 
@@ -394,7 +396,7 @@ class _WeatherHomeScreenState extends State<WeatherHomeScreen> {
 
   @override
   void dispose() {
-    weatherBloc.close();
+    _weatherBloc.close();
     super.dispose();
   }
 }

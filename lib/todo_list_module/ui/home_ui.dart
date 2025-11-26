@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:things_todo_in_this_weather/todo_list_module/custom_widgets/task_tile.dart';
+import 'package:things_todo_in_this_weather/todo_list_module/custom_widgets/theme_button.dart';
+import 'package:things_todo_in_this_weather/todo_list_module/model/task.dart';
+import 'package:things_todo_in_this_weather/todo_list_module/services/task_storage.dart';
 import 'package:uuid/uuid.dart';
-import '../custom_widgets/task_tile.dart';
-import '../model/task.dart';
-import '../services/task_storage.dart';
 
 class ToDoHomeScreen extends StatefulWidget {
   const ToDoHomeScreen({super.key});
@@ -15,7 +16,8 @@ class _ToDoHomeScreenState extends State<ToDoHomeScreen> {
   final TaskStorage _storage = TaskStorage();
   final List<Task> _tasks = [];
   bool _isLoading = true;
-  late final Uuid _uuid; /// a class to generate random number id's for each task
+  late final Uuid _uuid;
+  /// a class to generate random number id's for each task
 
   @override
   void initState() {
@@ -24,6 +26,7 @@ class _ToDoHomeScreenState extends State<ToDoHomeScreen> {
     _loadTasks();
   }
 
+  ///Member functions:
   Future<void> _loadTasks() async {
     final loaded = await _storage.loadTasks();
     setState(() {
@@ -55,7 +58,7 @@ class _ToDoHomeScreenState extends State<ToDoHomeScreen> {
       final newTask = Task(
         id: _uuid.v4(),
         title: result.title,
-        description: result.description,
+        description: result.description ?? '',
         isCompleted: false,
       );
       setState(() => _tasks.insert(0, newTask));
@@ -126,13 +129,15 @@ class _ToDoHomeScreenState extends State<ToDoHomeScreen> {
       },
     );
 
+    ///if showDialog return true to confirmed variable:
     if (confirmed == true) {
-      setState(() => _tasks.clear());
-      await _storage.clearAll();
+      setState(() => _tasks.clear()); ///Clearing the cached list of tasks
+      await _storage.clearAll(); ///Clearing the stored list of tasks
       _showSnack('All tasks cleared');
     }
   }
 
+  //-------------------------------------------------------------------------------
   @override
   Widget build(BuildContext context) {
     final appBar = AppBar(
@@ -143,15 +148,16 @@ class _ToDoHomeScreenState extends State<ToDoHomeScreen> {
           icon: const Icon(Icons.delete_sweep),
           onPressed: _tasks.isEmpty ? null : _clearAllDialog,
         ),
+        const ThemeSwitcherWidget(), ///< Theme Button
       ],
     );
 
     return Scaffold(
       appBar: appBar,
-      body: _isLoading
-          ? const Center(child: CircularProgressIndicator())
-          : _tasks.isEmpty
-          ? const Center(child: Text('No tasks yet — add one!'))
+      body: _isLoading // <--- First check
+          ? const Center(child: CircularProgressIndicator()) // Display if _isLoading is true
+          : _tasks.isEmpty // <--- Second check (only if _isLoading is false)
+          ? Center(child: Text('No tasks yet — add one!', style: Theme.of(context).textTheme.bodyMedium,))
           : ListView.builder(
               padding: const EdgeInsets.symmetric(vertical: 8),
               itemCount: _tasks.length,
@@ -177,9 +183,9 @@ class _ToDoHomeScreenState extends State<ToDoHomeScreen> {
 ///Helper Classes:
 class _TaskInputResult {
   final String title;
-  final String description;
+  final String? description; //changed to optional parameter
 
-  _TaskInputResult(this.title, this.description);
+  _TaskInputResult({required this.title , this.description});
 }
 
 class _TaskDialog extends StatefulWidget {
@@ -214,10 +220,10 @@ class _TaskDialogState extends State<_TaskDialog> {
   void _submit() {
     if (!_formKey.currentState!.validate()) return;
     final result = _TaskInputResult(
-      _titleCtrl.text.trim(),
-      _descCtrl.text.trim(),
+      title:  _titleCtrl.text.trim(),
+      description: _descCtrl.text.trim(),
     );
-    Navigator.of(context).pop(result);
+    Navigator.of(context).pop(result); //result is passed back via the navigation
   }
 
   @override

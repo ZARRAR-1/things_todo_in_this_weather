@@ -13,9 +13,7 @@ class WeatherInitialFetchEvent
 
 }
 
-class WeatherPositionFetchFailedEvent extends WeatherEvent{}
-
-/// EVent For Pull to refresh:
+class WeatherPositionFetchFailedEvent extends WeatherEvent{}/// EVent For Pull to refresh:
 class WeatherReFetchEvent
     extends WeatherEvent {
 

@@ -27,8 +27,8 @@ class MyApp extends StatelessWidget {
         brightness: Brightness.light,
         primarySwatch: Colors.blue, // Example primary color
         // You can customize many other properties:
-        // scaffoldBackgroundColor: Colors.white,
-        // appBarTheme: AppBarTheme(backgroundColor: Colors.blue),
+        scaffoldBackgroundColor: Colors.white,
+        appBarTheme: AppBarTheme(backgroundColor: Colors.white),
         textTheme: const TextTheme(
           bodyLarge: TextStyle(color: Colors.black87),
           bodyMedium: TextStyle(color: Colors.black54),
@@ -49,7 +49,7 @@ class MyApp extends StatelessWidget {
             Colors.blue, // We might want a different primary for dark mode
         // Or define specific dark theme colors:
         // scaffoldBackgroundColor: Colors.grey[850],
-        // appBarTheme: AppBarTheme(backgroundColor: Colors.grey[900]),
+        appBarTheme: AppBarTheme(backgroundColor: Colors.grey[900]),
         textTheme: const TextTheme(
             bodyLarge: TextStyle(color: Colors.white70),
             bodyMedium: TextStyle(color: Colors.white54),
@@ -63,7 +63,7 @@ class MyApp extends StatelessWidget {
       initial: AdaptiveThemeMode.system,
       builder: (ThemeData light, ThemeData dark) {
         return MaterialApp(
-          debugShowCheckedModeBanner: false,
+          debugShowCheckedModeBanner: true,
           title: 'LogicEra',
           theme: light,
           darkTheme: dark,
