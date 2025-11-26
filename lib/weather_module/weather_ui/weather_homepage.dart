@@ -27,7 +27,6 @@ class _WeatherHomeScreenState extends State<WeatherHomeScreen> {
     _weatherBloc = context.read<WeatherBloc>();
     _fetchInitialWeather();
   }
-
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
